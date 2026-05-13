@@ -36,3 +36,5 @@ output.txt
 
 # claude
 .claude/
+
+.vercel
