@@ -2,6 +2,8 @@
 
 Live Elo ratings for men's national football teams. Built for the road to the 2026 World Cup.
 
+🌐 Live at [worldcupelo.com](https://worldcupelo.com)
+
 Inspired by [clubelo.com](https://clubelo.com) and [playerelo.com](https://playerelo.com), but focused on international football.
 
 ## Features
