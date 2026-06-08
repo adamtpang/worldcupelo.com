@@ -7,10 +7,14 @@ export default function HomePage() {
   const wcCountdownDays = Math.max(
     0,
     Math.ceil(
-      (new Date("2026-06-11").getTime() - new Date("2026-05-14").getTime()) /
+      (new Date("2026-06-11T00:00:00Z").getTime() - Date.now()) /
         (1000 * 60 * 60 * 24)
     )
   );
+  const lastUpdated = new Date().toLocaleString("en-US", {
+    month: "short",
+    year: "numeric",
+  });
 
   return (
     <div>
@@ -92,7 +96,7 @@ export default function HomePage() {
             </p>
           </div>
           <div className="hidden sm:flex items-center gap-1 text-[11px] text-zinc-500 font-mono uppercase tracking-wider">
-            Updated · May 2026
+            Updated · {lastUpdated}
           </div>
         </div>
         <RankingsTable teams={TEAMS} />

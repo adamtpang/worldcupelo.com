@@ -11,11 +11,10 @@ export default function WorldCup2026Page() {
   const hosts = TEAMS.filter((t) => t.host);
   const top16 = TEAMS.slice(0, 16);
 
-  const wcDate = new Date("2026-06-11");
-  const now = new Date("2026-05-14");
+  const wcDate = new Date("2026-06-11T00:00:00Z");
   const daysToKickoff = Math.max(
     0,
-    Math.ceil((wcDate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24))
+    Math.ceil((wcDate.getTime() - Date.now()) / (1000 * 60 * 60 * 24))
   );
 
   const contendersByConfed: Record<string, typeof TEAMS> = {};
