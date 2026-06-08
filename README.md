@@ -30,9 +30,23 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
+## API
+
+JSON endpoints (no key required):
+
+| Endpoint | Description |
+| --- | --- |
+| `GET /api/rankings` | All teams. Query: `?confederation=UEFA&limit=50` |
+| `GET /api/team/[code]` | Team detail + regional table + win probabilities vs. top sides. e.g. `/api/team/ESP` |
+| `GET /api/match/[team1]/[team2]` | Head-to-head prediction. Query: `?venue=home` (adds +60 home Elo) or `?venue=neutral`. e.g. `/api/match/ESP/BRA` |
+
+The Elo engine (`lib/elo.ts`) implements the World Football Elo methodology: logistic expected score, tournament-weighted K, ~+60 home advantage, and goal-difference weighting (GD2 ×1.5, GD3 ×1.75, GD4+ scaled).
+
 ## Data
 
 National team Elo ratings are based on the publicly published [World Football Elo Ratings](https://eloratings.net), the standard for national-team Elo.
+
+**Phase 2 (data freshness pipeline — the real moat):** automated recompute after each international window via a match-data API (API-Football or the free Football-Data.org), persisted to Postgres, rebuilding the static ratings. This is what separates an evergreen tracker from a one-off World Cup page.
 
 ## Deploy
 
