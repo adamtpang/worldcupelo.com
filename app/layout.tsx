@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import Link from "next/link";
+import NewsBanner from "@/components/NewsBanner";
 
 export const metadata: Metadata = {
   title: "World Cup Elo · Live ELO Ratings for National Teams",
@@ -38,6 +39,7 @@ export default function RootLayout({
       </head>
       <body>
         <div className="min-h-screen flex flex-col">
+          <NewsBanner />
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
