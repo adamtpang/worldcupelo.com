@@ -6,6 +6,8 @@ import {
   getTeam,
   ratingTier,
   winProbability,
+  flagUrl,
+  externalProfiles,
 } from "@/lib/teams";
 
 export function generateStaticParams() {
@@ -59,12 +61,12 @@ export default async function TeamPage({
 
       <div className="grid lg:grid-cols-3 gap-6 mb-10">
         <div className="lg:col-span-2 bg-[var(--bg-card)] border border-[var(--border)] rounded-xl p-6 sm:p-8 relative overflow-hidden">
-          <div
+          <img
+            src={flagUrl(team.code)}
+            alt=""
             aria-hidden
-            className="absolute right-0 top-0 w-64 h-64 opacity-[0.06] -translate-y-12 translate-x-12 text-[280px] leading-none"
-          >
-            {team.flag}
-          </div>
+            className="absolute right-0 top-0 h-72 w-auto opacity-[0.05] -translate-y-6 translate-x-16 object-cover"
+          />
           <div className="relative">
             <div className="flex items-center gap-2 mb-3">
               <span
@@ -86,7 +88,13 @@ export default async function TeamPage({
               )}
             </div>
             <div className="flex items-end gap-4 flex-wrap">
-              <span className="text-7xl sm:text-8xl leading-none">{team.flag}</span>
+              <img
+                src={flagUrl(team.code)}
+                alt={`${team.name} flag`}
+                width={132}
+                height={88}
+                className="h-16 sm:h-20 w-auto rounded-md object-cover ring-1 ring-white/15 shadow-lg"
+              />
               <div>
                 <h1 className="text-3xl sm:text-5xl font-black tracking-tight">
                   {team.name}
@@ -120,6 +128,36 @@ export default async function TeamPage({
           <Stat label="Confederation" value={team.confederation} />
         </div>
       </div>
+
+      <section className="mb-10">
+        <h2 className="text-lg font-bold tracking-tight mb-1">
+          {team.name} elsewhere
+        </h2>
+        <p className="text-zinc-500 text-sm mb-3">
+          Profiles &amp; ratings on related football sites
+        </p>
+        <div className="grid sm:grid-cols-2 gap-3">
+          {externalProfiles(team).map((p) => (
+            <a
+              key={p.site}
+              href={p.url}
+              target="_blank"
+              rel="noreferrer"
+              className="group flex items-center justify-between gap-3 bg-[var(--bg-card)] border border-[var(--border)] hover:border-amber-500/40 rounded-lg px-4 py-3 transition"
+            >
+              <div className="min-w-0">
+                <div className="font-semibold text-sm group-hover:text-amber-200 transition">
+                  {p.site}
+                </div>
+                <div className="text-[12px] text-zinc-500 truncate">{p.note}</div>
+              </div>
+              <span className="text-[11px] text-mono text-zinc-500 group-hover:text-amber-300 whitespace-nowrap shrink-0">
+                {p.label} ↗
+              </span>
+            </a>
+          ))}
+        </div>
+      </section>
 
       <section className="mb-10">
         <h2 className="text-lg font-bold tracking-tight mb-3">
@@ -165,7 +203,14 @@ export default async function TeamPage({
                           href={`/team/${opp.code.toLowerCase()}`}
                           className="flex items-center gap-2 hover:text-amber-300"
                         >
-                          <span className="text-lg">{opp.flag}</span>
+                          <img
+                            src={flagUrl(opp.code)}
+                            alt=""
+                            loading="lazy"
+                            width={20}
+                            height={14}
+                            className="h-3.5 w-5 shrink-0 rounded-[2px] object-cover ring-1 ring-white/10"
+                          />
                           <span className="font-medium">{opp.name}</span>
                         </Link>
                       </td>
@@ -201,7 +246,14 @@ export default async function TeamPage({
                 href={`/team/${r.code.toLowerCase()}`}
                 className="flex items-center gap-3 px-3 py-2.5 hover:bg-white/[0.02]"
               >
-                <span className="text-lg">{r.flag}</span>
+                <img
+                  src={flagUrl(r.code)}
+                  alt=""
+                  loading="lazy"
+                  width={20}
+                  height={14}
+                  className="h-3.5 w-5 shrink-0 rounded-[2px] object-cover ring-1 ring-white/10"
+                />
                 <span className="font-medium flex-1">{r.name}</span>
                 <span className="text-mono tabular text-amber-300 font-bold text-sm">
                   {r.rating}
@@ -233,7 +285,14 @@ export default async function TeamPage({
                 <span className="text-zinc-500 text-mono text-xs w-7">
                   #{r.rank}
                 </span>
-                <span className="text-lg">{r.flag}</span>
+                <img
+                  src={flagUrl(r.code)}
+                  alt=""
+                  loading="lazy"
+                  width={20}
+                  height={14}
+                  className="h-3.5 w-5 shrink-0 rounded-[2px] object-cover ring-1 ring-white/10"
+                />
                 <span className="font-medium flex-1">{r.name}</span>
                 <span className="text-mono tabular text-amber-300 font-bold text-sm">
                   {r.rating}

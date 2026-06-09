@@ -150,3 +150,75 @@ export function ratingTier(rating: number): { label: string; color: string } {
 export function winProbability(rA: number, rB: number, homeAdvantage = 0): number {
   return 1 / (1 + Math.pow(10, (rB - rA - homeAdvantage) / 400));
 }
+
+// ISO 3166-1 alpha-2 codes (flagcdn slugs) for real flag images.
+// Home nations use flagcdn's UK subdivision slugs.
+export const ISO2: Record<string, string> = {
+  ESP: "es", ARG: "ar", FRA: "fr", ENG: "gb-eng", COL: "co", BRA: "br",
+  POR: "pt", NED: "nl", CRO: "hr", ECU: "ec", NOR: "no", GER: "de",
+  SUI: "ch", URU: "uy", TUR: "tr", JPN: "jp", SEN: "sn", DEN: "dk",
+  ITA: "it", BEL: "be", MEX: "mx", PAR: "py", AUT: "at", MAR: "ma",
+  CAN: "ca", UKR: "ua", SCO: "gb-sct", KOR: "kr", RUS: "ru", AUS: "au",
+  SRB: "rs", GRE: "gr", IRN: "ir", USA: "us", PAN: "pa", NGA: "ng",
+  POL: "pl", UZB: "uz", CZE: "cz", CHI: "cl", ALG: "dz", WAL: "gb-wls",
+  VEN: "ve", KVX: "xk", PER: "pe", HUN: "hu", SVN: "si", JOR: "jo",
+  IRL: "ie", SVK: "sk", BOL: "bo", ALB: "al", SWE: "se", EGY: "eg",
+  GEO: "ge", ROU: "ro", COD: "cd", CIV: "ci", CRC: "cr", ISR: "il",
+  TUN: "tn", CMR: "cm", NIR: "gb-nir", MKD: "mk", KSA: "sa", MLI: "ml",
+  NZL: "nz", IRQ: "iq", BIH: "ba", HON: "hn", ISL: "is", CPV: "cv",
+  HAI: "ht", ANG: "ao", UAE: "ae", BFA: "bf", JAM: "jm", RSA: "za",
+  GUA: "gt", GHA: "gh", FIN: "fi", BLR: "by", OMA: "om", SYR: "sy",
+  GUI: "gn", PLE: "ps", CUW: "cw", BUL: "bg", MNE: "me", SUR: "sr",
+  QAT: "qa", LBY: "ly", GAM: "gm", BHR: "bh", BEN: "bj", KAZ: "kz",
+  GAB: "ga", NIG: "ne",
+};
+
+/** Real flag image URL (SVG, scales crisply at any size). */
+export function flagUrl(code: string): string {
+  const iso = ISO2[code.toUpperCase()];
+  return iso ? `https://flagcdn.com/${iso}.svg` : "";
+}
+
+export type ExternalProfile = {
+  site: string;
+  label: string;
+  url: string;
+  note: string;
+};
+
+/** Deep links to this nation's presence on related football sites. */
+export function externalProfiles(team: Team): ExternalProfile[] {
+  const slug = team.name.replace(/ /g, "_");
+  const profiles: ExternalProfile[] = [
+    {
+      site: "EloRatings",
+      label: "eloratings.net",
+      url: `https://www.eloratings.net/${encodeURIComponent(slug)}`,
+      note: "Full national-team Elo history & match log",
+    },
+    {
+      site: "PlayerElo",
+      label: "playerelo.football",
+      url: "https://playerelo.football/",
+      note: "Squad & player-level Elo ratings",
+    },
+    {
+      site: "Wikipedia",
+      label: "wikipedia.org",
+      url: `https://en.wikipedia.org/wiki/Special:Search?go=Go&search=${encodeURIComponent(
+        team.name + " national football team"
+      )}`,
+      note: "Squad, history & records",
+    },
+  ];
+  // ClubElo only tracks UEFA club sides — surface it where it has real data.
+  if (team.confederation === "UEFA") {
+    profiles.splice(2, 0, {
+      site: "ClubElo",
+      label: "clubelo.com",
+      url: `http://clubelo.com/${team.code}`,
+      note: "Club sides from this nation",
+    });
+  }
+  return profiles;
+}

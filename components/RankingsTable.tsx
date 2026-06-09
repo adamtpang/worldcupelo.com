@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import type { Confederation, Team } from "@/lib/teams";
-import { CONFEDERATIONS, ratingTier } from "@/lib/teams";
+import { CONFEDERATIONS, ratingTier, flagUrl } from "@/lib/teams";
 
 type Filter = "ALL" | Confederation;
 
@@ -69,6 +69,7 @@ export default function RankingsTable({ teams }: { teams: Team[] }) {
               <th className="text-left px-3 py-2 font-medium hidden lg:table-cell">
                 Tier
               </th>
+              <th className="px-3 py-2 font-medium w-[1%]"></th>
             </tr>
           </thead>
           <tbody>
@@ -88,7 +89,14 @@ export default function RankingsTable({ teams }: { teams: Team[] }) {
                       href={`/team/${t.code.toLowerCase()}`}
                       className="flex items-center gap-3 group/team"
                     >
-                      <span className="text-xl leading-none">{t.flag}</span>
+                      <img
+                        src={flagUrl(t.code)}
+                        alt={`${t.name} flag`}
+                        loading="lazy"
+                        width={24}
+                        height={16}
+                        className="h-4 w-6 shrink-0 rounded-[2px] object-cover ring-1 ring-white/10"
+                      />
                       <div className="flex items-center gap-2">
                         <span className="font-semibold group-hover/team:text-amber-300 transition">
                           {t.name}
@@ -131,12 +139,21 @@ export default function RankingsTable({ teams }: { teams: Team[] }) {
                   >
                     {tier.label}
                   </td>
+                  <td className="px-3 py-2.5 text-right">
+                    <Link
+                      href={`/team/${t.code.toLowerCase()}`}
+                      className="inline-flex items-center gap-1 whitespace-nowrap rounded-md border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] font-semibold text-zinc-300 transition hover:border-amber-500/40 hover:bg-amber-500/10 hover:text-amber-200"
+                    >
+                      View<span className="hidden sm:inline"> team</span>
+                      <span aria-hidden>→</span>
+                    </Link>
+                  </td>
                 </tr>
               );
             })}
             {filtered.length === 0 && (
               <tr>
-                <td colSpan={6} className="text-center py-8 text-zinc-500 text-sm">
+                <td colSpan={7} className="text-center py-8 text-zinc-500 text-sm">
                   No teams match your search.
                 </td>
               </tr>
