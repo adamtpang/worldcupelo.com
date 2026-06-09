@@ -1,0 +1,38 @@
+<!-- @dsCard group="Colors" viewport="700x180" name="Tri-nation host accents" subtitle="Canada red · Mexico green · USA blue — the 2026 host families (diversity)" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; background: var(--surface-page); font-family: var(--font-sans); padding: 20px; }
+  .nation { margin-bottom: 12px; }
+  .head { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; }
+  .flag { font-size: 16px; }
+  .name { font-size: 12px; font-weight: 700; color: var(--text-primary); }
+  .meta { font-family: var(--font-mono); font-size: 10px; color: var(--text-tertiary); }
+  .ramp { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-radius: var(--radius-md); overflow: hidden; }
+  .ramp div { height: 32px; display: flex; align-items: center; padding-left: 10px; font-family: var(--font-mono); font-size: 9px; font-weight: 600; color: rgba(255,255,255,.85); }
+</style>
+</head>
+<body>
+  <div class="nation">
+    <div class="head"><span class="flag">🇨🇦</span><span class="name">Canada</span><span class="meta">--wce-can-*</span></div>
+    <div class="ramp">
+      <div style="background:var(--wce-can-700)">700</div><div style="background:var(--wce-can-600)">600</div><div style="background:var(--wce-can-500)">500</div><div style="background:var(--wce-can-400);color:#3a0008">400</div>
+    </div>
+  </div>
+  <div class="nation">
+    <div class="head"><span class="flag">🇲🇽</span><span class="name">Mexico</span><span class="meta">--wce-mex-*</span></div>
+    <div class="ramp">
+      <div style="background:var(--wce-mex-700)">700</div><div style="background:var(--wce-mex-600)">600</div><div style="background:var(--wce-mex-500)">500</div><div style="background:var(--wce-mex-400);color:#04210f">400</div>
+    </div>
+  </div>
+  <div class="nation" style="margin-bottom:0">
+    <div class="head"><span class="flag">🇺🇸</span><span class="name">United States</span><span class="meta">--wce-usa-*</span></div>
+    <div class="ramp">
+      <div style="background:var(--wce-usa-700)">700</div><div style="background:var(--wce-usa-600)">600</div><div style="background:var(--wce-usa-500)">500</div><div style="background:var(--wce-usa-400);color:#03152e">400</div>
+    </div>
+  </div>
+</body>
+</html>

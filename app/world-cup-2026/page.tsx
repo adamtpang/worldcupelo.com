@@ -35,7 +35,7 @@ export default function WorldCup2026Page() {
           <div className="text-[11px] uppercase tracking-[0.18em] text-amber-300 font-bold mb-2">
             FIFA World Cup 2026
           </div>
-          <h1 className="text-4xl sm:text-6xl font-black tracking-tight leading-[1.05] max-w-3xl">
+          <h1 className="font-display text-4xl sm:text-6xl font-black tracking-tight leading-[1.05] max-w-3xl">
             The first <span className="gold-text">48-team</span> World Cup.
             <br />
             Three hosts. One trophy.
@@ -182,7 +182,7 @@ export default function WorldCup2026Page() {
           </table>
         </div>
         <p className="text-[11px] text-zinc-500 mt-2">
-          * Naïve title odds derived from Elo only — not a forecast. See{" "}
+          * Naïve title odds derived from Elo only, not a forecast. See{" "}
           <Link href="/methodology" className="underline hover:text-zinc-300">
             methodology
           </Link>

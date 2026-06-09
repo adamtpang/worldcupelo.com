@@ -17,7 +17,7 @@ export default function HomePage() {
 
   return (
     <div>
-      {/* Compact identity bar — keeps the table high on the page */}
+      {/* Compact identity bar, keeps the table high on the page */}
       <section className="border-b border-[var(--border)] relative overflow-hidden">
         <div
           aria-hidden
@@ -33,12 +33,12 @@ export default function HomePage() {
               <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               Live Elo · Every men's national team
             </div>
-            <h1 className="text-2xl sm:text-3xl font-black tracking-tight leading-tight">
+            <h1 className="font-display text-2xl sm:text-3xl font-black tracking-tight leading-tight">
               National-team <span className="gold-text gold-glow">Elo ratings</span>
             </h1>
             <p className="text-zinc-400 text-sm mt-1 max-w-xl">
-              A continuous rating of every men's national team — match results,
-              opponent strength, and home advantage.
+              A continuous rating of every men's national team, built from match
+              results, opponent strength, and home advantage.
             </p>
           </div>
           <div className="flex flex-wrap gap-2 shrink-0">
@@ -65,7 +65,7 @@ export default function HomePage() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 pt-6 pb-10">
         <div className="flex items-end justify-between mb-3">
           <div>
-            <h2 className="text-xl sm:text-2xl font-bold tracking-tight">
+            <h2 className="font-display text-xl sm:text-2xl font-bold tracking-tight">
               Global Rankings
             </h2>
             <p className="text-zinc-500 text-sm mt-0.5">

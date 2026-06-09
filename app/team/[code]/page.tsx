@@ -8,6 +8,7 @@ import {
   winProbability,
   flagUrl,
   externalProfiles,
+  hostBadge,
 } from "@/lib/teams";
 
 export function generateStaticParams() {
@@ -39,6 +40,7 @@ export default async function TeamPage({
 
   const tier = ratingTier(team.rating);
   const conf = CONFEDERATIONS[team.confederation];
+  const hb = team.host ? hostBadge(team.code) : null;
   const peakDiff = (team.peakRating ?? team.rating) - team.rating;
 
   const sameConfederation = TEAMS.filter(
@@ -82,7 +84,14 @@ export default async function TeamPage({
                 RANK #{team.rank}
               </span>
               {team.host && (
-                <span className="text-[10px] font-bold uppercase tracking-wider text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded">
+                <span
+                  className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded border"
+                  style={
+                    hb
+                      ? { color: hb.text, background: hb.bg, borderColor: hb.border }
+                      : undefined
+                  }
+                >
                   2026 Host
                 </span>
               )}
@@ -96,7 +105,7 @@ export default async function TeamPage({
                 className="h-16 sm:h-20 w-auto rounded-md object-cover ring-1 ring-white/15 shadow-lg"
               />
               <div>
-                <h1 className="text-3xl sm:text-5xl font-black tracking-tight">
+                <h1 className="font-display text-3xl sm:text-5xl font-black tracking-tight">
                   {team.name}
                 </h1>
                 <div className="flex items-center gap-3 mt-2">

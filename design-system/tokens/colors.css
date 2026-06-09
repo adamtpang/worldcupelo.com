@@ -1,0 +1,159 @@
+/* ============================================================
+   COLORS — worldcupelo.com
+   "Unity through one emblem, diversity through many looks" (FWC26 / We Are 26).
+
+   UNITY  → one disciplined dark editorial base + GOLD for ratings.
+   DIVERSITY → accents that vary by context:
+     · tri-nation HOST accents — Canada red, Mexico green, USA blue
+       (the official 2026 host families)
+     · a NEON energy layer — magenta / cyan / electric-blue, pulled from
+       the Americas-nightlife reference (Shakira-2010 / Waka-Waka neon).
+   Gold + tri-nation + neon are SEASONING on a near-black data instrument,
+   never the whole plate. All accent text is tuned for WCAG-AA on the dark base.
+   ============================================================ */
+
+:root {
+  /* ============ NEUTRALS — near-black surface stack ============ */
+  --wce-bg: #0a0a0b;            /* page background — almost black */
+  --wce-bg-elevated: #111113;   /* raised sections, sticky header */
+  --wce-bg-card: #16161a;       /* cards, tables, panels */
+  --wce-bg-inset: #0a0a0b;      /* inputs, wells, progress tracks */
+  --wce-bg-true: #000000;       /* pure black — hero voids, ticker bed */
+
+  --wce-border: #26262c;        /* default 1px hairline */
+  --wce-border-strong: #36363e; /* hover / emphasis hairline */
+  --wce-border-faint: #1c1c21;  /* divider between dense rows */
+
+  --wce-text: #f5f5f7;          /* primary — near white (AA on all surfaces) */
+  --wce-text-muted: #9ca3af;    /* secondary / labels (AA on bg) */
+  --wce-text-dim: #6b7280;      /* tertiary / meta / captions */
+  --wce-text-faint: #4b5563;    /* placeholders, disabled */
+
+  /* ============ GOLD — primary accent (UNITY / ratings) ============ */
+  --wce-gold: #d4af37;
+  --wce-gold-bright: #f4d04a;   /* gradient top-stop / hover */
+  --wce-gold-deep: #b78821;     /* gradient bottom-stop / press */
+  --wce-gold-dim: #92651e;      /* gold on dark, low-key */
+  --wce-gold-50: #fdf9ed;
+  --wce-gold-100: #faf0cd;
+  --wce-gold-200: #f3df96;
+  --wce-gold-300: #ecc85d;      /* AA gold text on dark */
+  --wce-gold-400: #e6b337;
+  --wce-gold-500: #d4af37;
+  --wce-gold-600: #b78821;
+  --wce-gold-700: #92651e;
+  --wce-gold-800: #7a5220;
+  --wce-gold-900: #684520;
+
+  /* ============ TRI-NATION HOST ACCENTS (DIVERSITY) ============ */
+  /* Canada — reds */
+  --wce-can-700: #8e0a20;
+  --wce-can-600: #c8102e;       /* seed */
+  --wce-can-500: #e4002b;       /* seed — Canada flag red */
+  --wce-can-400: #ff5a5f;       /* seed — bright */
+  --wce-can-300: #ff8a8d;       /* AA-ish text on dark */
+  --wce-can: var(--wce-can-500);
+  --wce-can-text: #ff9a9d;      /* legible red label on dark */
+
+  /* Mexico — greens */
+  --wce-mex-700: #004d34;
+  --wce-mex-600: #006847;       /* seed — deep */
+  --wce-mex-500: #009639;       /* seed — Mexico flag green */
+  --wce-mex-400: #2ecc71;       /* seed — bright */
+  --wce-mex-300: #6ee7a8;       /* AA text on dark */
+  --wce-mex: var(--wce-mex-500);
+  --wce-mex-text: #5fe39b;
+
+  /* USA — blues */
+  --wce-usa-700: #0a3161;       /* seed — navy */
+  --wce-usa-600: #0066b3;       /* seed — royal */
+  --wce-usa-500: #1f6fdb;
+  --wce-usa-400: #3b82f6;       /* seed — bright */
+  --wce-usa-300: #7dd3fc;       /* AA text on dark */
+  --wce-usa: var(--wce-usa-600);
+  --wce-usa-text: #79b8f7;
+
+  /* ============ NEON ENERGY LAYER (the reference image) ============ */
+  /* Pulled from the Americas-neon reference: pure-black ground with
+     electric cyan, vivid blue, and neon magenta. Use for the news
+     ticker, live pulses, hover glows, chart strokes, "We Are 26" moments. */
+  --wce-neon-magenta: #fd36f5;  /* hot fuchsia */
+  --wce-neon-magenta-soft: #ff6cf8;
+  --wce-neon-cyan: #6ff7ff;     /* electric cyan */
+  --wce-neon-cyan-soft: #9afdff;
+  --wce-neon-blue: #0050ff;     /* electric blue */
+  --wce-neon-blue-soft: #2a6bff;
+  --wce-neon-navy: #001156;     /* deep royal void */
+
+  /* neon text tuned for AA on dark */
+  --wce-neon-magenta-text: #ff7af6;
+  --wce-neon-cyan-text: #8df8ff;
+
+  /* glows (use sparingly, behind data, never on body text) */
+  --wce-glow-magenta: 0 0 20px rgba(253, 54, 245, 0.45);
+  --wce-glow-cyan: 0 0 20px rgba(111, 247, 255, 0.40);
+  --wce-glow-blue: 0 0 22px rgba(0, 80, 255, 0.45);
+
+  /* ============ SEMANTIC RESULT COLORS ============ */
+  --wce-green: #10b981;         /* win / positive */
+  --wce-green-text: #6ee7b7;    /* win text on dark (emerald-300) */
+  --wce-red: #ef4444;           /* loss / negative */
+  --wce-red-text: #fca5a5;      /* loss text on dark */
+  --wce-rose: #f43f5e;          /* opponent-win bars */
+  --wce-zinc: #71717a;          /* draw / neutral */
+
+  /* ---- Tier accents (rating bands) ---- */
+  --wce-tier-elite: #fcd34d;      /* 2100+   amber-300 */
+  --wce-tier-world: #6ee7b7;      /* 2000–99 emerald-300 */
+  --wce-tier-top: #7dd3fc;        /* 1900–99 sky-300 */
+  --wce-tier-strong: #c4b5fd;     /* 1800–99 violet-300 */
+  --wce-tier-competitive: #d4d4d8;/* 1700–99 zinc-300 */
+  --wce-tier-developing: #a1a1aa; /* 1600–99 zinc-400 */
+  --wce-tier-emerging: #71717a;   /* <1600   zinc-500 */
+
+  /* ---- Confederation brand tints (flat, used at 10–22% alpha) ---- */
+  --wce-conf-uefa: #0066b3;     /* Europe */
+  --wce-conf-conmebol: #febe10; /* South America */
+  --wce-conf-concacaf: #e30613; /* North America */
+  --wce-conf-afc: #003a70;      /* Asia */
+  --wce-conf-caf: #009639;      /* Africa */
+  --wce-conf-ofc: #0080c0;      /* Oceania */
+
+  /* ============ GRADIENTS ============ */
+  /* tri-nation accent line (the news-ticker rule): CAN red → MEX green → USA blue */
+  --wce-gradient-trination: linear-gradient(90deg, #ff5a5f 0%, #2ecc71 50%, #3b82f6 100%); /* @kind color */
+  /* neon energy sweep: magenta → cyan (We Are 26 / hero spark) */
+  --wce-gradient-neon: linear-gradient(90deg, #fd36f5 0%, #6ff7ff 100%); /* @kind color */
+  /* gold rating gradient (the signature text clip) */
+  --wce-gradient-gold: linear-gradient(135deg, #f4d04a 0%, #d4af37 50%, #b78821 100%); /* @kind color */
+
+  /* ============ TRANSLUCENT UTILITY FILLS (over dark) ============ */
+  --wce-white-02: rgba(255, 255, 255, 0.02); /* row hover */
+  --wce-white-05: rgba(255, 255, 255, 0.05); /* ghost button rest */
+  --wce-white-10: rgba(255, 255, 255, 0.10); /* ghost button hover, ring */
+  --wce-gold-soft: rgba(212, 175, 55, 0.10); /* gold chip fill */
+  --wce-gold-glow: rgba(212, 175, 55, 0.30); /* gold text shadow */
+
+  /* ---- Focus ring (a11y — focus-visible) ---- */
+  --wce-focus-ring: 0 0 0 2px var(--wce-bg), 0 0 0 4px var(--wce-neon-cyan);
+
+  /* ============ SEMANTIC ALIASES (use these in components) ============ */
+  --surface-page: var(--wce-bg);
+  --surface-raised: var(--wce-bg-elevated);
+  --surface-card: var(--wce-bg-card);
+  --surface-inset: var(--wce-bg-inset);
+  --surface-void: var(--wce-bg-true);
+  --border-default: var(--wce-border);
+  --border-hover: var(--wce-border-strong);
+  --text-primary: var(--wce-text);
+  --text-secondary: var(--wce-text-muted);
+  --text-tertiary: var(--wce-text-dim);
+  --accent: var(--wce-gold);
+  --accent-on: #000000;        /* text/icon color when sitting ON gold */
+  --host-canada: var(--wce-can);
+  --host-mexico: var(--wce-mex);
+  --host-usa: var(--wce-usa);
+  --positive: var(--wce-green);
+  --negative: var(--wce-red);
+  --focus-ring: var(--wce-focus-ring);
+}

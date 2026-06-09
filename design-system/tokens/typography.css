@@ -1,0 +1,70 @@
+/* ============================================================
+   TYPOGRAPHY — worldcupelo.com
+   Three families, sharp weights, heavy use of tabular figures.
+   - Archivo Expanded → DISPLAY: big sporty, broadcast headlines
+     ("National-team Elo ratings", "We Are 26"). Weights 800/900,
+     tight tracking. This is the editorial-sports voice.
+   - Inter → UI / body / eyebrow labels. Stylistic sets
+     cv02/03/04/11 + ss01 on globally for the straighter glyphs.
+   - JetBrains Mono → EVERY number that can change: ratings, ranks,
+     percentages, countdowns, diffs — always tabular.
+   ============================================================ */
+
+:root {
+  /* ---- Families ---- */
+  --font-archivo: "Archivo Expanded", "Archivo", "Inter", system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, "SF Mono", monospace;
+
+  /* semantic aliases */
+  --font-display: var(--font-archivo); /* Archivo Expanded — sporty broadcast headlines */
+  --font-body: var(--font-sans);       /* Inter — UI, labels, prose */
+  --font-numeric: var(--font-mono);    /* JetBrains Mono — ratings, stats, code */
+
+  /* ---- Weights ---- */
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-extrabold: 800;
+  --weight-black: 900;
+
+  /* ---- Type scale (px → rem at 16px root) ----
+     Named for role, mapped to the sizes seen across the product. */
+  --text-9:   9px;   /* micro tags: "Host", star count */
+  --text-10: 10px;   /* uppercase eyebrow labels, stat captions */
+  --text-11: 11px;   /* table tier labels, footnotes */
+  --text-12: 12px;   /* nav, meta, footer */
+  --text-13: 13px;   /* nav active, dense body */
+  --text-14: 14px;   /* base body */
+  --text-15: 15px;   /* wordmark, lead body */
+  --text-16: 16px;
+  --text-18: 18px;   /* section heading (sm) */
+  --text-20: 20px;   /* section heading */
+  --text-24: 24px;   /* h1 (compact) */
+  --text-30: 30px;   /* h1 hero (sm) */
+  --text-36: 36px;
+  --text-48: 48px;   /* team name display */
+  --text-60: 60px;   /* World Cup hero */
+
+  /* ---- Line heights ---- */
+  --leading-none: 1;       /* big tabular numbers */
+  --leading-tight: 1.1;    /* display headlines */
+  --leading-snug: 1.3;
+  --leading-normal: 1.5;   /* prose */
+  --leading-relaxed: 1.65; /* methodology long-form */
+
+  /* ---- Letter spacing ---- */
+  --tracking-tighter: -0.03em; /* big black display */
+  --tracking-tight: -0.015em;  /* headings */
+  --tracking-normal: 0;
+  --tracking-wide: 0.05em;     /* small uppercase labels */
+  --tracking-wider: 0.1em;     /* table header eyebrows */
+  --tracking-widest: 0.18em;   /* hero eyebrow "FIFA WORLD CUP 2026" */
+}
+
+/* Tabular numerics helper — apply to anything showing a rating. */
+.wce-tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}

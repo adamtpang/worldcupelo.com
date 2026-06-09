@@ -1,0 +1,63 @@
+/* ============================================================
+   SPACING, RADII, SHADOWS, MOTION — worldcupelo.com
+   The product is dense and tabular: small paddings, tight gaps,
+   restrained rounding, almost no drop shadow (the dark surface
+   stack does the elevation work). One soft shadow for the hero
+   flag, one gold glow for accent text.
+   ============================================================ */
+
+:root {
+  /* ---- Spacing scale (4px base grid) ---- */
+  --space-0: 0;
+  --space-1: 2px;   /* 0.5 — chip y-padding */
+  --space-2: 4px;   /* 1   — micro gaps, star spacing */
+  --space-3: 6px;   /* 1.5 — button y-padding, gap-1.5 */
+  --space-4: 8px;   /* 2   — chip gaps, gap-2 */
+  --space-5: 10px;
+  --space-6: 12px;  /* 3   — card gaps, table cell x */
+  --space-7: 14px;  /* header height unit */
+  --space-8: 16px;  /* 4   — card padding (sm), section gaps */
+  --space-10: 20px; /* 5   — card padding */
+  --space-12: 24px; /* 6   — card padding (lg), section rhythm */
+  --space-16: 32px; /* 8   — hero padding */
+  --space-20: 40px; /* 10  — hero padding (lg) */
+  --space-24: 48px; /* footer top margin offset */
+  --space-32: 64px;
+  --space-40: 96px; /* footer top margin (mt-24) */
+
+  /* ---- Layout ---- */
+  --container-max: 80rem;      /* max-w-7xl = 1280px */
+  --container-prose: 48rem;    /* max-w-3xl = 768px, methodology */
+  --header-height: 56px;       /* h-14 sticky header */
+  --gutter: 16px;              /* px-4 */
+  --gutter-lg: 24px;           /* sm:px-6 */
+  --ticker-height: 36px;       /* the tri-nation news ticker */
+  --tap-target: 44px;          /* a11y minimum touch target */
+
+  /* ---- Radii ---- */
+  --radius-xs: 2px;   /* flag thumbnails in tables */
+  --radius-sm: 3px;   /* small flag corners */
+  --radius-md: 6px;   /* buttons, inputs, chips, code blocks */
+  --radius-lg: 8px;   /* cards, tables */
+  --radius-xl: 12px;  /* feature cards, compare panel */
+  --radius-2xl: 16px; /* hero blocks */
+  --radius-full: 9999px; /* pills, live dot, progress bars */
+
+  /* ---- Borders ---- */
+  --border-width: 1px;
+  --ring-faint: 0 0 0 1px rgba(255, 255, 255, 0.10); /* flag ring */
+  --ring-gold: 0 0 0 1px rgba(212, 175, 55, 0.40);
+
+  /* ---- Shadows (used sparingly) ---- */
+  --shadow-none: none;
+  --shadow-flag: 0 10px 15px -3px rgba(0, 0, 0, 0.4); /* hero flag lift */
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-pop: 0 8px 24px rgba(0, 0, 0, 0.5);        /* dialogs, menus */
+  --glow-gold: 0 0 24px rgba(212, 175, 55, 0.30);     /* accent headline */
+
+  /* ---- Motion ---- */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1); /* @kind other */
+  --duration-fast: 120ms; /* @kind other */
+  --duration-base: 180ms; /* @kind other */
+  --duration-slow: 300ms; /* @kind other */
+}

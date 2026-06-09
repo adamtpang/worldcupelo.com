@@ -1,4 +1,4 @@
-// Football Elo engine — World Football Elo Ratings methodology.
+// Football Elo engine. World Football Elo Ratings methodology.
 // Implements expected score, tournament-weighted K, home advantage,
 // and goal-difference weighting. Self-contained and dependency-free so
 // it can run in API routes, server components, and the data pipeline.
@@ -89,7 +89,7 @@ export type Outcome = { win: number; draw: number; loss: number };
 /**
  * Win / draw / loss probabilities for A vs B.
  * Draw share is modelled as a bell over the rating gap, then split off the
- * raw two-way expectation — a standard approximation for football Elo.
+ * raw two-way expectation, a standard approximation for football Elo.
  */
 export function matchProbabilities(
   ratingA: number,
@@ -107,7 +107,7 @@ export function matchProbabilities(
   };
 }
 
-/** Expected goals supremacy from a rating gap — light heuristic for UI. */
+/** Expected goals supremacy from a rating gap, a light heuristic for UI. */
 export function expectedSupremacy(
   ratingA: number,
   ratingB: number,

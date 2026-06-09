@@ -5,12 +5,12 @@ import { useEffect, useState } from "react";
 
 type NewsItem = { emoji: string; text: string; href: string };
 
-// Seed news. These are real and current as of June 2026 — Phase 2 (live data
+// Seed news. These are real and current as of June 2026. Phase 2 (live data
 // pipeline) will make these auto-update after each international window.
 const NEWS: NewsItem[] = [
   {
     emoji: "⚽",
-    text: "FIFA World Cup 2026 kicks off June 11 — the first-ever 48-team tournament",
+    text: "FIFA World Cup 2026 kicks off June 11, the first-ever 48-team tournament",
     href: "/world-cup-2026",
   },
   {
@@ -25,7 +25,7 @@ const NEWS: NewsItem[] = [
   },
   {
     emoji: "🇺🇸🇨🇦🇲🇽",
-    text: "Hosted across the United States, Canada & Mexico — 16 host cities, 104 matches",
+    text: "Hosted across the United States, Canada & Mexico · 16 host cities, 104 matches",
     href: "/world-cup-2026",
   },
   {
@@ -78,36 +78,48 @@ export default function NewsBanner() {
   const loop = [...items, ...items];
 
   return (
-    <div className="news-marquee relative bg-[#0b0b0d] border-b border-[var(--border)] overflow-hidden">
+    <div className="news-marquee relative bg-[var(--wce-bg-true)] border-b border-[var(--border)] overflow-hidden">
       <div
         aria-hidden
         className="absolute top-0 left-0 right-0 h-[2px]"
-        style={{
-          background:
-            "linear-gradient(90deg,#e30613 0%,#ffffff 25%,#009639 50%,#0066b3 75%,#d4af37 100%)",
-        }}
+        style={{ background: "var(--wce-gradient-trination)" }}
       />
-      <div className="flex items-stretch">
-        <div className="flex items-center gap-1.5 px-3 bg-red-600 text-white text-[10px] font-black uppercase tracking-[0.15em] shrink-0 z-10">
-          <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+      <div className="flex items-stretch pt-[2px]">
+        <div className="flex items-center gap-1.5 px-3 bg-[var(--wce-bg-true)] border-r border-[var(--border)] text-white text-[10px] font-black uppercase tracking-[0.15em] shrink-0 z-10">
+          <span
+            className="w-1.5 h-1.5 rounded-full animate-pulse-slow"
+            style={{
+              background: "var(--wce-neon-magenta)",
+              boxShadow: "var(--wce-glow-magenta)",
+            }}
+          />
           Live
         </div>
 
-        <div className="overflow-hidden flex-1 py-2">
+        <div
+          className="overflow-hidden flex-1 py-2"
+          style={{
+            maskImage:
+              "linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent)",
+            WebkitMaskImage:
+              "linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent)",
+          }}
+        >
           <div className="flex w-max animate-marquee">
             {loop.map((item, i) => (
               <Link
                 key={i}
                 href={item.href}
-                className="flex items-center gap-2 px-6 text-[12px] text-zinc-300 hover:text-amber-200 transition whitespace-nowrap group"
+                className="flex items-center gap-2 px-6 text-[12px] text-zinc-300 hover:text-[var(--wce-neon-cyan-text)] transition whitespace-nowrap group"
               >
                 <span className="text-sm">{item.emoji}</span>
                 <span className="font-medium">{item.text}</span>
                 <span
                   aria-hidden
-                  className="ml-4 text-amber-500/40 group-hover:text-amber-400"
+                  className="ml-4"
+                  style={{ color: "var(--wce-gold)", opacity: 0.4 }}
                 >
-                  •
+                  ·
                 </span>
               </Link>
             ))}

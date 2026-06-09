@@ -2,19 +2,89 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================================
+   worldcupelo.com design tokens
+   Incorporated from the World Cup Elo design system.
+   "Unity through one emblem, diversity through many looks" (FWC26).
+   One dark base + gold for ratings (unity); tri-nation host accents
+   and a neon energy layer (diversity / Americas spark).
+   ============================================================ */
 :root {
-  --bg: #0a0a0b;
-  --bg-elevated: #111113;
-  --bg-card: #16161a;
-  --border: #26262c;
-  --border-strong: #36363e;
-  --text: #f5f5f7;
-  --text-muted: #9ca3af;
-  --text-dim: #6b7280;
-  --gold: #d4af37;
-  --gold-dim: #92651e;
-  --green: #10b981;
-  --red: #ef4444;
+  /* ===== Neutrals: near-black surface stack ===== */
+  --wce-bg: #0a0a0b;
+  --wce-bg-elevated: #111113;
+  --wce-bg-card: #16161a;
+  --wce-bg-inset: #0a0a0b;
+  --wce-bg-true: #000000;
+  --wce-border: #26262c;
+  --wce-border-strong: #36363e;
+  --wce-border-faint: #1c1c21;
+  --wce-text: #f5f5f7;
+  --wce-text-muted: #9ca3af;
+  --wce-text-dim: #6b7280;
+  --wce-text-faint: #4b5563;
+
+  /* ===== Gold: primary accent (ratings + the one CTA) ===== */
+  --wce-gold: #d4af37;
+  --wce-gold-bright: #f4d04a;
+  --wce-gold-deep: #b78821;
+  --wce-gold-dim: #92651e;
+  --wce-gold-300: #ecc85d;
+
+  /* ===== Tri-nation host accents (Canada red, Mexico green, USA blue) ===== */
+  --wce-can: #e4002b;
+  --wce-can-400: #ff5a5f;
+  --wce-can-text: #ff9a9d;
+  --wce-mex: #009639;
+  --wce-mex-400: #2ecc71;
+  --wce-mex-text: #5fe39b;
+  --wce-usa: #0066b3;
+  --wce-usa-400: #3b82f6;
+  --wce-usa-text: #79b8f7;
+
+  /* ===== Neon energy layer (Americas spark) ===== */
+  --wce-neon-magenta: #fd36f5;
+  --wce-neon-magenta-soft: #ff6cf8;
+  --wce-neon-magenta-text: #ff7af6;
+  --wce-neon-cyan: #6ff7ff;
+  --wce-neon-cyan-text: #8df8ff;
+  --wce-neon-blue: #0050ff;
+  --wce-glow-magenta: 0 0 20px rgba(253, 54, 245, 0.45);
+  --wce-glow-cyan: 0 0 20px rgba(111, 247, 255, 0.4);
+
+  /* ===== Semantic result colors ===== */
+  --wce-green: #10b981;
+  --wce-red: #ef4444;
+  --wce-rose: #f43f5e;
+  --wce-zinc: #71717a;
+
+  /* ===== Gradients ===== */
+  --wce-gradient-trination: linear-gradient(90deg, #ff5a5f 0%, #2ecc71 50%, #3b82f6 100%);
+  --wce-gradient-neon: linear-gradient(90deg, #fd36f5 0%, #6ff7ff 100%);
+  --wce-gradient-gold: linear-gradient(135deg, #f4d04a 0%, #d4af37 50%, #b78821 100%);
+
+  /* ===== Fonts ===== */
+  --font-archivo: "Archivo Expanded", "Archivo", "Inter", system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, "SF Mono", monospace;
+  --font-display: var(--font-archivo);
+
+  /* ===== Focus ring (neon cyan, AA on dark) ===== */
+  --wce-focus-ring: 0 0 0 2px var(--wce-bg), 0 0 0 4px var(--wce-neon-cyan);
+
+  /* ===== Back-compat aliases used throughout existing components ===== */
+  --bg: var(--wce-bg);
+  --bg-elevated: var(--wce-bg-elevated);
+  --bg-card: var(--wce-bg-card);
+  --border: var(--wce-border);
+  --border-strong: var(--wce-border-strong);
+  --text: var(--wce-text);
+  --text-muted: var(--wce-text-muted);
+  --text-dim: var(--wce-text-dim);
+  --gold: var(--wce-gold);
+  --gold-dim: var(--wce-gold-dim);
+  --green: var(--wce-green);
+  --red: var(--wce-red);
 }
 
 * {
@@ -31,7 +101,7 @@ html {
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: var(--font-sans);
   font-feature-settings: "cv02", "cv03", "cv04", "cv11", "ss01";
 }
 
@@ -53,31 +123,6 @@ body {
   background: #4a4a52;
 }
 
-.tabular {
-  font-variant-numeric: tabular-nums;
-  font-feature-settings: "tnum";
-}
-
-.text-mono {
-  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
-}
-
-@keyframes shimmer {
-  0% { background-position: -1000px 0; }
-  100% { background-position: 1000px 0; }
-}
-
-.gold-text {
-  background: linear-gradient(135deg, #f4d04a 0%, #d4af37 50%, #b78821 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.gold-glow {
-  text-shadow: 0 0 24px rgba(212, 175, 55, 0.3);
-}
-
 a {
   color: inherit;
   text-decoration: none;
@@ -85,6 +130,58 @@ a {
 
 button {
   font-family: inherit;
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--wce-focus-ring);
+  border-radius: 3px;
+}
+
+/* ===== Brand utilities ===== */
+.tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+.text-mono {
+  font-family: var(--font-mono);
+}
+
+/* Sporty broadcast display voice (Archivo Expanded) */
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+/* Gold gradient text: the signature accent on "elo", ratings, hero spans */
+.gold-text {
+  background: var(--wce-gradient-gold);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Neon energy gradient text: "We Are 26" / hero spark (use sparingly) */
+.neon-text {
+  background: var(--wce-gradient-neon);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.gold-glow {
+  text-shadow: 0 0 24px rgba(212, 175, 55, 0.3);
+}
+
+/* Tri-nation accent rule (the 2px gradient line) */
+.trination-rule {
+  height: 2px;
+  width: 100%;
+  background: var(--wce-gradient-trination);
+  border: 0;
 }
 
 @keyframes marquee {
@@ -104,8 +201,26 @@ button {
   animation-play-state: paused;
 }
 
+@keyframes wce-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.animate-pulse-slow {
+  animation: wce-pulse 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee {
     animation: none;
+  }
+  .animate-pulse-slow {
+    animation: none;
+    opacity: 1;
   }
 }

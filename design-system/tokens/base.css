@@ -1,0 +1,151 @@
+/* ============================================================
+   BASE — worldcupelo.com
+   Element resets + the handful of brand utility classes that
+   appear across the product (gold gradient text, glow, tabular,
+   custom scrollbar). Lifted from app/globals.css.
+   ============================================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--surface-page);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  background: var(--surface-page);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  /* Inter stylistic sets used site-wide */
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11", "ss01";
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* ---- Accessibility: focus-visible ring (neon-cyan, AA on dark) ---- */
+:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: var(--radius-sm, 3px);
+}
+
+/* ---- Custom scrollbar (dark) ---- */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--surface-page);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-hover);
+  border-radius: var(--radius-md);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #4a4a52;
+}
+
+/* ---- Brand utilities ---- */
+
+/* Tabular numerics for ratings/stats */
+.wce-tabular,
+.tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* Monospace numeric run */
+.wce-mono,
+.text-mono {
+  font-family: var(--font-mono);
+}
+
+/* Gold gradient text — the signature accent on "elo", ratings, hero spans */
+.wce-gold-text,
+.gold-text {
+  background: var(--wce-gradient-gold);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Neon energy gradient text — "We Are 26" / hero spark (use sparingly) */
+.wce-neon-text {
+  background: var(--wce-gradient-neon);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Sporty display headline — Archivo Expanded, tight, uppercase-friendly */
+.wce-display {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.04;
+}
+
+/* Tri-nation accent rule — the 2px gradient line under a section / ticker */
+.wce-trination-rule {
+  height: 2px;
+  width: 100%;
+  background: var(--wce-gradient-trination);
+  border: 0;
+}
+
+/* Neon glow utilities (behind data only — never on running text) */
+.wce-glow-magenta { text-shadow: var(--wce-glow-magenta); }
+.wce-glow-cyan { text-shadow: var(--wce-glow-cyan); }
+
+/* Soft gold halo behind a headline */
+.wce-gold-glow,
+.gold-glow {
+  text-shadow: var(--glow-gold);
+}
+
+/* The live "·" pulse dot used in eyebrows */
+.wce-live-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--wce-green);
+  animation: wce-pulse 2s var(--ease-standard) infinite;
+}
+
+@keyframes wce-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+/* Marquee for the news ticker */
+@keyframes wce-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ---- Motion: respect reduced-motion everywhere ---- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .wce-live-dot { animation: none !important; opacity: 1 !important; }
+}

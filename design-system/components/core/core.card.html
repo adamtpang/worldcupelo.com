@@ -1,0 +1,74 @@
+<!-- @dsCard group="Components" viewport="700x340" name="Core — buttons, chips, labels" subtitle="Button, Chip, Eyebrow, Logo, SectionHeading" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  body { margin: 0; background: var(--surface-page); font-family: var(--font-sans); padding: 22px 24px; }
+  .group { margin-bottom: 20px; }
+  .row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .cap { font-size: 10px; text-transform: uppercase; letter-spacing: .1em; color: var(--text-tertiary); font-weight: 600; margin-bottom: 10px; }
+  hr { border: 0; border-top: 1px solid var(--border-faint); margin: 18px 0; }
+</style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script src="../../_ds_bundle.js"></script>
+
+  <script type="text/babel">
+    const { Button, Chip, Eyebrow, Logo, SectionHeading } = window.WorldCupEloDesignSystem_6a6b1a;
+
+    function Demo() {
+      return (
+        <div>
+          <div className="group">
+            <div className="row" style={{ justifyContent: "space-between" }}>
+              <Logo size="lg" />
+              <Logo size="md" />
+            </div>
+          </div>
+          <hr />
+          <div className="group">
+            <div className="cap">Button — variants & sizes</div>
+            <div className="row">
+              <Button variant="primary" arrow>World Cup 2026</Button>
+              <Button variant="secondary">Predict →</Button>
+              <Button variant="ghost">Rankings</Button>
+              <Button variant="primary" size="sm">View team</Button>
+              <Button variant="secondary" size="sm" disabled>Disabled</Button>
+            </div>
+          </div>
+          <div className="group">
+            <div className="cap">Chip</div>
+            <div className="row">
+              <Chip variant="confederation" confederation="UEFA" />
+              <Chip variant="confederation" confederation="CONMEBOL" />
+              <Chip variant="confederation" confederation="CAF" />
+              <Chip variant="host">Host</Chip>
+              <Chip variant="gold">Qualified</Chip>
+              <Chip>Neutral</Chip>
+            </div>
+          </div>
+          <div className="group">
+            <div className="cap">Eyebrow</div>
+            <div className="row" style={{ gap: 28 }}>
+              <Eyebrow live>Live Elo · Every men's national team</Eyebrow>
+              <Eyebrow tone="gold">FIFA World Cup 2026</Eyebrow>
+            </div>
+          </div>
+          <div className="group" style={{ marginBottom: 0 }}>
+            <div className="cap">SectionHeading</div>
+            <SectionHeading title="Global Rankings" subtitle="All 100 men's national teams by Elo rating" right="Updated · Jun 2026" />
+          </div>
+        </div>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+  </script>
+</body>
+</html>

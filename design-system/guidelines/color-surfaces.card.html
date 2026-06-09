@@ -1,0 +1,24 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Surface stack" subtitle="Four near-black surfaces — elevation by contrast, not shadow" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; background: var(--surface-page); font-family: var(--font-sans); }
+  .wrap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border-default); border: 1px solid var(--border-default); border-radius: var(--radius-lg); overflow: hidden; margin: 20px; }
+  .sw { padding: 18px 16px; min-height: 96px; display: flex; flex-direction: column; justify-content: flex-end; }
+  .name { color: var(--text-primary); font-size: 12px; font-weight: 600; }
+  .hex { color: var(--text-tertiary); font-family: var(--font-mono); font-size: 11px; margin-top: 3px; }
+  .tok { color: var(--text-secondary); font-family: var(--font-mono); font-size: 10px; margin-top: 1px; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="sw" style="background: var(--wce-bg);"><div class="name">Page</div><div class="hex">#0A0A0B</div><div class="tok">--surface-page</div></div>
+    <div class="sw" style="background: var(--wce-bg-elevated);"><div class="name">Elevated</div><div class="hex">#111113</div><div class="tok">--surface-raised</div></div>
+    <div class="sw" style="background: var(--wce-bg-card);"><div class="name">Card</div><div class="hex">#16161A</div><div class="tok">--surface-card</div></div>
+    <div class="sw" style="background: var(--wce-bg-card); border-top: 1px solid var(--border-strong);"><div class="name" style="color:var(--text-secondary)">Border</div><div class="hex">#26262C</div><div class="tok">--border-default</div></div>
+  </div>
+</body>
+</html>

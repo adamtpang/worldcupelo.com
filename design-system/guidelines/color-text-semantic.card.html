@@ -1,0 +1,34 @@
+<!-- @dsCard group="Colors" viewport="700x140" name="Text & semantics" subtitle="Text ramp + win/loss result colors on the dark surface" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; background: var(--surface-page); font-family: var(--font-sans); padding: 20px; display: flex; gap: 14px; }
+  .col { flex: 1; }
+  .stack > div { display: flex; align-items: baseline; gap: 10px; padding: 5px 0; }
+  .label { font-size: 15px; font-weight: 600; }
+  .meta { font-family: var(--font-mono); font-size: 10px; color: var(--text-tertiary); }
+  .panel { background: var(--surface-card); border: 1px solid var(--border-default); border-radius: var(--radius-lg); padding: 14px 16px; }
+  .res { display:flex; gap: 20px; }
+  .res div { font-family: var(--font-mono); font-weight: 800; font-size: 26px; }
+  .rl { font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--text-tertiary); font-weight: 600; font-family: var(--font-sans); }
+</style>
+</head>
+<body>
+  <div class="col stack">
+    <div><span class="label" style="color:var(--text-primary)">Primary</span><span class="meta">--text-primary</span></div>
+    <div><span class="label" style="color:var(--text-secondary)">Muted</span><span class="meta">--text-secondary</span></div>
+    <div><span class="label" style="color:var(--text-tertiary)">Dim</span><span class="meta">--text-tertiary</span></div>
+    <div><span class="label" style="color:var(--wce-text-faint)">Faint</span><span class="meta">--wce-text-faint</span></div>
+  </div>
+  <div class="col">
+    <div class="panel res">
+      <div><span class="rl">Win</span><br/><span style="color:var(--wce-green-text)">62%</span></div>
+      <div><span class="rl">Draw</span><br/><span style="color:var(--text-secondary)">21%</span></div>
+      <div><span class="rl">Loss</span><br/><span style="color:var(--wce-red-text)">17%</span></div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!-- @dsCard group="Spacing" viewport="700x140" name="Spacing scale" subtitle="4px base grid — dense paddings, tight chip gaps" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; background: var(--surface-page); font-family: var(--font-sans); padding: 22px; }
+  .row { display: flex; align-items: flex-end; gap: 16px; }
+  .item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .bar { background: linear-gradient(180deg, var(--wce-gold-bright), var(--wce-gold)); width: 100%; border-radius: 2px; }
+  .cell { width: 40px; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .lbl { font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary); }
+  .tok { font-family: var(--font-mono); font-size: 9px; color: var(--text-tertiary); }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="cell"><div class="bar" style="height:4px"></div><span class="lbl">4</span><span class="tok">--space-2</span></div>
+    <div class="cell"><div class="bar" style="height:8px"></div><span class="lbl">8</span><span class="tok">--space-4</span></div>
+    <div class="cell"><div class="bar" style="height:12px"></div><span class="lbl">12</span><span class="tok">--space-6</span></div>
+    <div class="cell"><div class="bar" style="height:16px"></div><span class="lbl">16</span><span class="tok">--space-8</span></div>
+    <div class="cell"><div class="bar" style="height:24px"></div><span class="lbl">24</span><span class="tok">--space-12</span></div>
+    <div class="cell"><div class="bar" style="height:32px"></div><span class="lbl">32</span><span class="tok">--space-16</span></div>
+    <div class="cell"><div class="bar" style="height:48px"></div><span class="lbl">48</span><span class="tok">--space-24</span></div>
+  </div>
+</body>
+</html>

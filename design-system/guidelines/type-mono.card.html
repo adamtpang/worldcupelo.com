@@ -1,0 +1,30 @@
+<!-- @dsCard group="Type" viewport="700x160" name="Mono & tabular numbers" subtitle="JetBrains Mono, tabular — every rating, rank, percent, diff" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; background: var(--surface-page); font-family: var(--font-sans); padding: 20px 24px; }
+  .row { display: flex; align-items: flex-end; gap: 28px; }
+  .big { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-weight: 800; font-size: 44px; line-height: 1; }
+  .col { display: flex; flex-direction: column; gap: 2px; }
+  .rl { font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--text-tertiary); font-weight: 600; }
+  .num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-weight: 700; font-size: 18px; color: var(--text-primary); }
+  .diff-up { color: var(--wce-green-text); }
+  .diff-dn { color: var(--text-tertiary); }
+  .meta { font-family: var(--font-mono); font-size: 10px; color: var(--text-tertiary); margin-top: 16px; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="col"><span class="rl">Current Elo</span><span class="big gold-text">2171</span></div>
+    <div class="col"><span class="rl">Rank</span><span class="num">#1</span></div>
+    <div class="col"><span class="rl">Peak</span><span class="num">2171</span></div>
+    <div class="col"><span class="rl">vs BRA</span><span class="num diff-up">+192</span></div>
+    <div class="col"><span class="rl">Kickoff</span><span class="num">184d</span></div>
+    <div class="col"><span class="rl">Win</span><span class="num diff-up">62%</span></div>
+  </div>
+  <div class="meta">JetBrains Mono · tabular-nums · weights 700/800 · ratings in .gold-text</div>
+</body>
+</html>

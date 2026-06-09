@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import type { Confederation, Team } from "@/lib/teams";
-import { CONFEDERATIONS, ratingTier, flagUrl } from "@/lib/teams";
+import { CONFEDERATIONS, ratingTier, flagUrl, hostBadge } from "@/lib/teams";
 
 type Filter = "ALL" | Confederation;
 
@@ -76,6 +76,7 @@ export default function RankingsTable({ teams }: { teams: Team[] }) {
             {filtered.map((t) => {
               const tier = ratingTier(t.rating);
               const conf = CONFEDERATIONS[t.confederation];
+              const hb = t.host ? hostBadge(t.code) : null;
               return (
                 <tr
                   key={t.code}
@@ -102,7 +103,18 @@ export default function RankingsTable({ teams }: { teams: Team[] }) {
                           {t.name}
                         </span>
                         {t.host && (
-                          <span className="text-[9px] font-bold uppercase tracking-wider text-amber-400 bg-amber-500/10 px-1.5 py-0.5 rounded">
+                          <span
+                            className="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded border"
+                            style={
+                              hb
+                                ? {
+                                    color: hb.text,
+                                    background: hb.bg,
+                                    borderColor: hb.border,
+                                  }
+                                : undefined
+                            }
+                          >
                             Host
                           </span>
                         )}

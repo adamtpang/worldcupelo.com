@@ -1,0 +1,33 @@
+<!-- @dsCard group="Brand" viewport="700x140" name="Flags & iconography" subtitle="No icon set — flags (flagcdn), functional emoji, unicode arrows" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; background: var(--surface-page); font-family: var(--font-sans); padding: 22px; display: flex; align-items: center; gap: 32px; }
+  .flags { display: flex; align-items: center; gap: 12px; }
+  .flags img { height: 28px; width: 42px; object-fit: cover; border-radius: 3px; box-shadow: 0 0 0 1px rgba(255,255,255,.10); }
+  .glyphs { display: flex; gap: 18px; font-size: 22px; color: var(--text-secondary); }
+  .glyphs .gold { color: var(--wce-gold); }
+  .col { display: flex; flex-direction: column; gap: 10px; }
+  .meta { font-family: var(--font-mono); font-size: 10px; color: var(--text-tertiary); }
+</style>
+</head>
+<body>
+  <div class="col">
+    <div class="flags">
+      <img src="https://flagcdn.com/es.svg" alt="Spain" />
+      <img src="https://flagcdn.com/ar.svg" alt="Argentina" />
+      <img src="https://flagcdn.com/fr.svg" alt="France" />
+      <img src="https://flagcdn.com/gb-eng.svg" alt="England" />
+      <img src="https://flagcdn.com/br.svg" alt="Brazil" />
+    </div>
+    <span class="meta">flagcdn.com/{iso2}.svg · ring-1 white/10 · radius 3px</span>
+  </div>
+  <div class="col">
+    <div class="glyphs"><span>⚽</span><span>🏆</span><span>🤝</span><span class="gold">★★★</span><span class="gold">→</span><span>↗</span></div>
+    <span class="meta">functional emoji + unicode · no icon library</span>
+  </div>
+</body>
+</html>

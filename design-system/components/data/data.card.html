@@ -1,0 +1,71 @@
+<!-- @dsCard group="Components" viewport="700x380" name="Data — ratings, flags, rows" subtitle="TeamRow, StatTile, RatingValue, FlagThumb, ProbabilityBar" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  body { margin: 0; background: var(--surface-page); font-family: var(--font-sans); padding: 22px 24px; }
+  .group { margin-bottom: 18px; }
+  .cap { font-size: 10px; text-transform: uppercase; letter-spacing: .1em; color: var(--text-tertiary); font-weight: 600; margin-bottom: 10px; }
+  .panel { background: var(--surface-card); border: 1px solid var(--border-default); border-radius: var(--radius-lg); overflow: hidden; }
+  .row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+</style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script src="../../_ds_bundle.js"></script>
+
+  <script type="text/babel">
+    const { TeamRow, StatTile, RatingValue, FlagThumb, ProbabilityBar } = window.WorldCupEloDesignSystem_6a6b1a;
+
+    function Demo() {
+      return (
+        <div>
+          <div className="group">
+            <div className="cap">TeamRow — in a card panel</div>
+            <div className="panel">
+              <TeamRow rank={1} code="ESP" name="Spain" rating={2171} wcTitles={1} href="#" />
+              <TeamRow rank={2} code="ARG" name="Argentina" rating={2113} wcTitles={3} href="#" />
+              <TeamRow rank={21} code="MEX" name="Mexico" rating={1834} confederation="CONCACAF" host showConfederation href="#" />
+            </div>
+          </div>
+
+          <div className="group">
+            <div className="cap">StatTile</div>
+            <div className="grid4">
+              <StatTile label="Current Elo" value="2171" accent="gold" />
+              <StatTile label="Peak Elo" value="2171" sub="at peak" />
+              <StatTile label="World Rank" value="#1" />
+              <StatTile label="Confed" value="UEFA" />
+            </div>
+          </div>
+
+          <div className="group">
+            <div className="cap">RatingValue · FlagThumb</div>
+            <div className="row">
+              <RatingValue value={2171} size="2xl" glow />
+              <RatingValue value="+58" size="md" tone="green" />
+              <RatingValue value="−35" size="md" tone="muted" />
+              <FlagThumb code="BRA" name="Brazil" size="lg" lift />
+              <FlagThumb code="FRA" name="France" size="md" />
+              <FlagThumb code="JPN" name="Japan" size="sm" />
+            </div>
+          </div>
+
+          <div className="group" style={{ marginBottom: 0 }}>
+            <div className="cap">ProbabilityBar</div>
+            <ProbabilityBar win={0.62} draw={0.21} loss={0.17} showLabels height={12} />
+          </div>
+        </div>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+  </script>
+</body>
+</html>

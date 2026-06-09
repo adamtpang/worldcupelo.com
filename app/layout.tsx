@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import Link from "next/link";
 import NewsBanner from "@/components/NewsBanner";
+import Emblem from "@/components/Emblem";
 
 export const metadata: Metadata = {
   title: "World Cup Elo · Live ELO Ratings for National Teams",
@@ -33,7 +34,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Archivo+Expanded:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
           rel="stylesheet"
         />
       </head>
@@ -54,10 +55,8 @@ function Header() {
     <header className="border-b border-[var(--border)] bg-[var(--bg)]/80 backdrop-blur-xl sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="w-7 h-7 rounded-full bg-gradient-to-br from-amber-300 via-amber-500 to-amber-700 flex items-center justify-center text-[10px] font-black text-black">
-            ⚽
-          </div>
-          <span className="font-bold text-[15px] tracking-tight">
+          <Emblem size={28} className="shrink-0" />
+          <span className="font-display font-extrabold text-[15px] tracking-tight">
             worldcup<span className="gold-text">elo</span>
           </span>
         </Link>

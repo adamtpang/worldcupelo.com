@@ -1,0 +1,51 @@
+<!-- @startingPoint section="Reference" subtitle="Living styleguide — every token & component state" viewport="1280x900" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>World Cup Elo — Styleguide</title>
+<link rel="stylesheet" href="styles.css" />
+<style>
+  html, body { margin: 0; background: var(--surface-page); color: var(--text-primary); }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 32px 120px; }
+  .sg-h1 { font-family: var(--font-display); font-weight: 900; font-size: 46px; letter-spacing: -0.02em; line-height: 1.02; margin: 0; }
+  .sg-section { padding-top: 56px; }
+  .sg-kicker { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: var(--wce-gold-300); margin-bottom: 10px; }
+  .sg-title { font-family: var(--font-display); font-weight: 800; font-size: 26px; letter-spacing: -0.01em; margin: 0 0 6px; text-transform: uppercase; }
+  .sg-why { font-size: 14px; color: var(--text-secondary); line-height: 1.6; max-width: 760px; margin: 0 0 24px; }
+  .sg-why b { color: var(--text-primary); font-weight: 600; }
+  .sg-grid { display: grid; gap: 12px; }
+  .sg-card { background: var(--surface-card); border: 1px solid var(--border-default); border-radius: var(--radius-lg); padding: 18px; }
+  .sg-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-tertiary); font-weight: 600; margin-bottom: 12px; }
+  .swrow { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px; }
+  .sw { border-radius: var(--radius-md); padding: 10px; height: 64px; display: flex; flex-direction: column; justify-content: flex-end; border: 1px solid rgba(255,255,255,0.06); }
+  .sw .n { font-size: 11px; font-weight: 700; }
+  .sw .h { font-family: var(--font-mono); font-size: 9px; opacity: 0.7; }
+  .divider { height: 2px; background: var(--wce-gradient-trination); border: 0; margin: 0; }
+  .row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .mono { font-family: var(--font-mono); }
+  nav.toc { position: sticky; top: 0; z-index: 30; background: rgba(10,10,11,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-default); }
+  nav.toc .inner { max-width: 1180px; margin: 0 auto; padding: 0 32px; height: 52px; display: flex; align-items: center; gap: 6px; overflow-x: auto; }
+  nav.toc a { font-size: 12px; font-weight: 500; color: var(--text-secondary); padding: 6px 10px; border-radius: var(--radius-md); white-space: nowrap; }
+  nav.toc a:hover { background: var(--wce-white-05); color: var(--text-primary); }
+</style>
+</head>
+<body>
+  <nav class="toc">
+    <div class="inner">
+      <a href="#brand">Brand</a><a href="#color">Color</a><a href="#type">Type</a>
+      <a href="#space">Space</a><a href="#components">Components</a><a href="#ticker">Ticker</a>
+      <a href="#motion">Motion</a><a href="#a11y">Accessibility</a>
+    </div>
+  </nav>
+
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script src="_ds_bundle.js"></script>
+  <script type="text/babel" src="styleguide.jsx"></script>
+</body>
+</html>

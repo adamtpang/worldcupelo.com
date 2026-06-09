@@ -1,0 +1,26 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Rating tiers" subtitle="Seven Elo bands, each with its own accent — Elite gold down to Emerging zinc" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; background: var(--surface-page); font-family: var(--font-sans); padding: 18px 20px; }
+  table { width: 100%; border-collapse: collapse; }
+  td { padding: 4px 8px; font-size: 13px; }
+  .band { font-family: var(--font-mono); color: var(--text-tertiary); font-size: 12px; width: 110px; }
+  .tier { font-weight: 700; }
+  .dot { display:inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 8px; vertical-align: middle; }
+</style>
+</head>
+<body>
+  <table>
+    <tr><td class="band">2100+</td><td class="tier" style="color:var(--wce-tier-elite)"><span class="dot" style="background:var(--wce-tier-elite)"></span>Elite</td><td style="color:var(--text-tertiary);font-size:12px">A top-3 side in the world</td></tr>
+    <tr><td class="band">2000–2099</td><td class="tier" style="color:var(--wce-tier-world)"><span class="dot" style="background:var(--wce-tier-world)"></span>World Class</td><td style="color:var(--text-tertiary);font-size:12px">Realistic title contenders</td></tr>
+    <tr><td class="band">1900–1999</td><td class="tier" style="color:var(--wce-tier-top)"><span class="dot" style="background:var(--wce-tier-top)"></span>Top Tier</td><td style="color:var(--text-tertiary);font-size:12px">Can beat anyone on the day</td></tr>
+    <tr><td class="band">1800–1899</td><td class="tier" style="color:var(--wce-tier-strong)"><span class="dot" style="background:var(--wce-tier-strong)"></span>Strong</td><td style="color:var(--text-tertiary);font-size:12px">Reliable knockout teams</td></tr>
+    <tr><td class="band">1700–1799</td><td class="tier" style="color:var(--wce-tier-competitive)"><span class="dot" style="background:var(--wce-tier-competitive)"></span>Competitive</td><td style="color:var(--text-tertiary);font-size:12px">World Cup qualifiers</td></tr>
+    <tr><td class="band">&lt;1700</td><td class="tier" style="color:var(--wce-tier-emerging)"><span class="dot" style="background:var(--wce-tier-emerging)"></span>Developing / Emerging</td><td style="color:var(--text-tertiary);font-size:12px">Regional & emerging sides</td></tr>
+  </table>
+</body>
+</html>

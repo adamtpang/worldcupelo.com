@@ -1,0 +1,31 @@
+<!-- @dsCard group="Colors" viewport="700x170" name="Neon energy layer" subtitle="Magenta · cyan · electric-blue on black — the Americas-neon spark" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; background: var(--surface-void); font-family: var(--font-sans); padding: 22px; }
+  .row { display: flex; gap: 12px; }
+  .sw { flex: 1; height: 64px; border-radius: var(--radius-md); display: flex; flex-direction: column; justify-content: flex-end; padding: 8px 10px; }
+  .n { font-size: 11px; font-weight: 700; color: #000; }
+  .h { font-family: var(--font-mono); font-size: 9px; color: rgba(0,0,0,.6); }
+  .demo { margin-top: 16px; display: flex; align-items: center; gap: 24px; }
+  .glow { font-family: var(--font-mono); font-weight: 800; font-size: 30px; }
+  .meta { font-family: var(--font-mono); font-size: 10px; color: var(--text-tertiary); }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="sw" style="background:var(--wce-neon-magenta)"><div class="n">Magenta</div><div class="h">#FD36F5</div></div>
+    <div class="sw" style="background:var(--wce-neon-cyan)"><div class="n">Cyan</div><div class="h">#6FF7FF</div></div>
+    <div class="sw" style="background:var(--wce-neon-blue)"><div class="n" style="color:#fff">Electric blue</div><div class="h" style="color:rgba(255,255,255,.7)">#0050FF</div></div>
+    <div class="sw" style="background:var(--wce-neon-navy)"><div class="n" style="color:#fff">Navy void</div><div class="h" style="color:rgba(255,255,255,.6)">#001156</div></div>
+  </div>
+  <div class="demo">
+    <span class="glow" style="color:var(--wce-neon-magenta);text-shadow:var(--wce-glow-magenta)">2171</span>
+    <span class="glow" style="color:var(--wce-neon-cyan);text-shadow:var(--wce-glow-cyan)">▲ 4</span>
+    <span class="meta">glow utilities — behind data only,<br/>never on running text</span>
+  </div>
+</body>
+</html>

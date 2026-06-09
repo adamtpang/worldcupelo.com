@@ -15,7 +15,9 @@ export default function MethodologyPage() {
       >
         ← Back
       </Link>
-      <h1 className="text-4xl font-black tracking-tight mb-2">Methodology</h1>
+      <h1 className="font-display text-4xl font-black tracking-tight mb-2">
+        Methodology
+      </h1>
       <p className="text-zinc-400 mb-10">
         How national-team Elo ratings work, and what they mean.
       </p>
@@ -27,7 +29,7 @@ export default function MethodologyPage() {
             Elo is a relative skill rating system originally developed by physicist
             Arpad Elo for chess. Every team carries a single number; when two teams
             play, points flow from the underdog to the favorite based on the result
-            and on the gap in ratings beforehand. The system is zero-sum — every
+            and on the gap in ratings beforehand. The system is zero-sum: every
             point one team gains, another loses.
           </p>
         </section>
@@ -64,31 +66,31 @@ export default function MethodologyPage() {
           <h2 className="text-xl font-bold text-white mb-2">Reading the numbers</h2>
           <ul className="space-y-2 text-sm">
             <li>
-              <span className="text-amber-300 font-bold">2100+</span> — Elite. A
+              <span className="text-amber-300 font-bold">2100+</span>: Elite. A
               top-3 side in the world. Spain, Argentina, France at their best.
             </li>
             <li>
-              <span className="text-emerald-300 font-bold">2000–2099</span> — World
+              <span className="text-emerald-300 font-bold">2000–2099</span>: World
               class. Realistic title contenders at major tournaments.
             </li>
             <li>
-              <span className="text-sky-300 font-bold">1900–1999</span> — Top tier.
+              <span className="text-sky-300 font-bold">1900–1999</span>: Top tier.
               Capable of beating anyone on the day.
             </li>
             <li>
-              <span className="text-violet-300 font-bold">1800–1899</span> — Strong.
+              <span className="text-violet-300 font-bold">1800–1899</span>: Strong.
               Reliable knockout-round teams.
             </li>
             <li>
-              <span className="text-zinc-300 font-bold">1700–1799</span> —
+              <span className="text-zinc-300 font-bold">1700–1799</span>:
               Competitive. World Cup qualifiers.
             </li>
             <li>
-              <span className="text-zinc-400 font-bold">1600–1699</span> —
+              <span className="text-zinc-400 font-bold">1600–1699</span>:
               Developing. Solid regional sides.
             </li>
             <li>
-              <span className="text-zinc-500 font-bold">Below 1600</span> —
+              <span className="text-zinc-500 font-bold">Below 1600</span>:
               Emerging programs.
             </li>
           </ul>
@@ -118,7 +120,7 @@ export default function MethodologyPage() {
             Win probabilities and tournament odds shown on this site are derived
             directly from current Elo ratings. They do not account for injuries,
             recent form trends, travel fatigue, or stylistic matchups. Treat them
-            as a baseline — a starting point for conversation, not a forecast.
+            as a baseline: a starting point for conversation, not a forecast.
           </p>
         </section>
       </div>

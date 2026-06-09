@@ -1,0 +1,12 @@
+/* ============================================================
+   FONTS — worldcupelo.com
+   Three families, all free / open-source, loaded from Google Fonts
+   (mirrors how the production site loads its webfonts):
+   - Archivo Expanded → DISPLAY headlines (sporty, broadcast, wide).
+   - Inter            → UI / body / labels.
+   - JetBrains Mono   → all numerics (Elo, ranks, %), tabular.
+   If you vendor binaries locally, drop @font-face rules at
+   assets/fonts/ here instead.
+   ============================================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Archivo+Expanded:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap");

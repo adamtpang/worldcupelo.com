@@ -211,7 +211,7 @@ export function externalProfiles(team: Team): ExternalProfile[] {
       note: "Squad, history & records",
     },
   ];
-  // ClubElo only tracks UEFA club sides — surface it where it has real data.
+  // ClubElo only tracks UEFA club sides, so surface it where it has real data.
   if (team.confederation === "UEFA") {
     profiles.splice(2, 0, {
       site: "ClubElo",
@@ -221,4 +221,20 @@ export function externalProfiles(team: Team): ExternalProfile[] {
     });
   }
   return profiles;
+}
+
+// Tri-nation host accent colors (2026 hosts) for the "Host" badge.
+export function hostBadge(
+  code: string
+): { text: string; bg: string; border: string } | null {
+  switch (code.toUpperCase()) {
+    case "USA":
+      return { text: "#79b8f7", bg: "rgba(0,102,179,0.15)", border: "rgba(0,102,179,0.4)" };
+    case "CAN":
+      return { text: "#ff9a9d", bg: "rgba(228,0,43,0.15)", border: "rgba(228,0,43,0.4)" };
+    case "MEX":
+      return { text: "#5fe39b", bg: "rgba(0,150,57,0.15)", border: "rgba(0,150,57,0.4)" };
+    default:
+      return null;
+  }
 }
