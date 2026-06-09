@@ -10,6 +10,13 @@ import {
   externalProfiles,
   hostBadge,
 } from "@/lib/teams";
+import {
+  getPlayers,
+  playerLinks,
+  positionColor,
+  positionLabel,
+  teamHighlightsUrl,
+} from "@/lib/players";
 
 export function generateStaticParams() {
   return TEAMS.map((t) => ({ code: t.code.toLowerCase() }));
@@ -41,6 +48,7 @@ export default async function TeamPage({
   const tier = ratingTier(team.rating);
   const conf = CONFEDERATIONS[team.confederation];
   const hb = team.host ? hostBadge(team.code) : null;
+  const players = getPlayers(team.code);
   const peakDiff = (team.peakRating ?? team.rating) - team.rating;
 
   const sameConfederation = TEAMS.filter(
@@ -139,7 +147,95 @@ export default async function TeamPage({
       </div>
 
       <section className="mb-10">
-        <h2 className="text-lg font-bold tracking-tight mb-1">
+        <div className="flex items-end justify-between gap-3 mb-3 flex-wrap">
+          <div>
+            <h2 className="font-display text-lg font-bold tracking-tight">
+              Key players
+            </h2>
+            <p className="text-zinc-500 text-sm mt-0.5">
+              {team.name} stars · stats and highlights
+            </p>
+          </div>
+          <a
+            href={teamHighlightsUrl(team.name)}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1.5 bg-gradient-to-b from-amber-300 to-amber-500 text-black font-bold px-3 py-1.5 rounded-md text-[13px] hover:from-amber-200 hover:to-amber-400 transition"
+          >
+            ▶ Watch {team.name} highlights
+          </a>
+        </div>
+        {players.length > 0 ? (
+          <div className="grid sm:grid-cols-2 gap-2">
+            {players.map((p) => {
+              const links = playerLinks(p.name);
+              const pc = positionColor(p.position);
+              return (
+                <div
+                  key={p.name}
+                  className="flex items-center justify-between gap-3 bg-[var(--bg-card)] border border-[var(--border)] rounded-lg px-3 py-2.5"
+                >
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-2">
+                      <span
+                        className="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded"
+                        style={{ color: pc.text, background: pc.bg }}
+                        title={positionLabel(p.position)}
+                      >
+                        {p.position}
+                      </span>
+                      <span className="font-semibold truncate">{p.name}</span>
+                    </div>
+                    <div className="text-[12px] text-zinc-500 truncate mt-0.5">
+                      {p.club}
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 shrink-0 text-[11px]">
+                    <a
+                      href={links.youtube}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-1 rounded-md border border-white/10 bg-white/5 px-2 py-1 font-semibold text-zinc-300 hover:border-amber-500/40 hover:text-amber-200 transition"
+                    >
+                      ▶ Watch
+                    </a>
+                    <a
+                      href={links.fbref}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-zinc-500 hover:text-zinc-200 transition"
+                      title="Stats on FBref"
+                    >
+                      Stats
+                    </a>
+                    <a
+                      href={links.transfermarkt}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-zinc-500 hover:text-zinc-200 transition hidden sm:inline"
+                      title="Profile on Transfermarkt"
+                    >
+                      Profile
+                    </a>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          <a
+            href="https://playerelo.football/"
+            target="_blank"
+            rel="noreferrer"
+            className="block bg-[var(--bg-card)] border border-[var(--border)] rounded-lg px-4 py-4 text-sm text-zinc-400 hover:border-amber-500/40 transition"
+          >
+            Full {team.name} squad ratings on playerelo.football ↗
+          </a>
+        )}
+      </section>
+
+      <section className="mb-10">
+        <h2 className="font-display text-lg font-bold tracking-tight mb-1">
           {team.name} elsewhere
         </h2>
         <p className="text-zinc-500 text-sm mb-3">
@@ -169,7 +265,7 @@ export default async function TeamPage({
       </section>
 
       <section className="mb-10">
-        <h2 className="text-lg font-bold tracking-tight mb-3">
+        <h2 className="font-display text-lg font-bold tracking-tight mb-3">
           Win probability vs. top opponents
         </h2>
         <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-lg overflow-hidden">
@@ -245,7 +341,7 @@ export default async function TeamPage({
 
       <section className="grid md:grid-cols-2 gap-6 mb-10">
         <div>
-          <h2 className="text-lg font-bold tracking-tight mb-3">
+          <h2 className="font-display text-lg font-bold tracking-tight mb-3">
             Closest rivals (by Elo)
           </h2>
           <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-lg divide-y divide-[var(--border)]/50">
@@ -281,7 +377,7 @@ export default async function TeamPage({
         </div>
 
         <div>
-          <h2 className="text-lg font-bold tracking-tight mb-3">
+          <h2 className="font-display text-lg font-bold tracking-tight mb-3">
             {team.confederation} regional table
           </h2>
           <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-lg divide-y divide-[var(--border)]/50">
