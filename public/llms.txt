@@ -1,0 +1,19 @@
+# World Cup Elo (worldcupelo.com)
+
+> Live Elo ratings for every men's national football team, built for the road to the 2026 World Cup.
+
+World Cup Elo gives every men's national team a single continuous rating computed from match results, opponent strength, and home advantage, using the World Football Elo methodology (logistic expected score, tournament-weighted K, roughly +60 home advantage, goal-difference weighting). Ratings are grounded in the publicly published World Football Elo Ratings (eloratings.net).
+
+It is for football fans, analysts, and bettors who want an honest, transparent ranking and head-to-head win probabilities. The site pairs a global rankings table with per-team pages, a match predictor, and a 2026 World Cup hub covering hosts, favorites, and confederation contenders. There are also open JSON endpoints (no key required) so agents can read the same data.
+
+## Key links
+- [Home](https://worldcupelo.com/): live global rankings table, today's World Cup fixtures, and confederation leaders.
+- [Rankings](https://worldcupelo.com/rankings): full ranked list of men's national teams by live Elo, filterable by confederation.
+- [World Cup 2026](https://worldcupelo.com/world-cup-2026): tournament hub with hosts, favorites, and group standings.
+- [Predict](https://worldcupelo.com/predict): head-to-head match prediction with win/draw/loss probabilities and a home-advantage toggle.
+- [Methodology](https://worldcupelo.com/methodology): how the Elo engine works and where the data comes from.
+- [Rankings API](https://worldcupelo.com/api/rankings): JSON endpoint; also /api/team/[code] and /api/match/[team1]/[team2].
+
+## About
+- Part of adam.inc, the internet portfolio of Adam Pangelinan (Anchor Marianas LLC).
+- Builder: https://adampang.com
