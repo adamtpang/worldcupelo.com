@@ -1,8 +1,16 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import Link from "next/link";
-import NewsBanner from "@/components/NewsBanner";
+import NewsBanner, { type NewsItem } from "@/components/NewsBanner";
 import Emblem from "@/components/Emblem";
+import {
+  getTournament,
+  recentResults,
+  upcoming,
+  biggestMovers,
+  type Tournament,
+} from "@/lib/tournament";
+import { TEAMS } from "@/lib/teams";
 
 export const metadata: Metadata = {
   title: "World Cup Elo · Live ELO Ratings for National Teams",
@@ -23,11 +31,92 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+function fmtDelta(d: number, digits = 1): string {
+  return d >= 0 ? `+${d.toFixed(digits)}` : `−${Math.abs(d).toFixed(digits)}`;
+}
+
+// Build the live ticker headlines from the tournament state, server-side.
+function buildLiveItems(t: Tournament): NewsItem[] {
+  const items: NewsItem[] = [];
+
+  items.push({
+    emoji: "🏆",
+    text: `${t.stageNow} · ${t.playedCount} of ${t.fixtures.length} matches played`,
+    href: "/today",
+  });
+
+  for (const f of recentResults(t, 2)) {
+    if (!f.score) continue;
+    const [g1, g2] = f.score;
+    let swing = "";
+    if (f.elo1Delta !== null && f.elo2Delta !== null) {
+      const up =
+        f.elo1Delta >= f.elo2Delta
+          ? { name: f.team1Name, d: f.elo1Delta }
+          : { name: f.team2Name, d: f.elo2Delta };
+      swing = ` · ${up.name} ${fmtDelta(up.d)} Elo`;
+    }
+    items.push({
+      emoji: "⚽",
+      text: `FT: ${f.team1Name} ${g1}-${g2} ${f.team2Name}${swing}`,
+      href: `/match/${f.slug}`,
+    });
+  }
+
+  for (const f of upcoming(t, 2)) {
+    let fav = "";
+    if (f.p1Win !== null && f.p2Win !== null) {
+      const lead =
+        f.p1Win >= f.p2Win
+          ? { name: f.team1Name, p: f.p1Win }
+          : { name: f.team2Name, p: f.p2Win };
+      fav = ` · ${lead.name} ${Math.round(lead.p * 100)}% by Elo`;
+    }
+    items.push({
+      emoji: "⏱️",
+      text: `Next: ${f.team1Name} vs ${f.team2Name}${fav}`,
+      href: `/match/${f.slug}`,
+    });
+  }
+
+  const mover = biggestMovers(t, 1)[0];
+  if (mover) {
+    const team = TEAMS.find((x) => x.code === mover.code);
+    if (team) {
+      items.push({
+        emoji: "📈",
+        text: `Biggest mover: ${team.name} ${fmtDelta(mover.delta, 0)} Elo over ${mover.playedCount} matches`,
+        href: `/team/${team.code.toLowerCase()}`,
+      });
+    }
+  }
+
+  const top = t.liveTeams[0];
+  if (top) {
+    items.push({
+      emoji: "🥇",
+      text: `${top.name} leads the live Elo rankings at ${top.rating}`,
+      href: `/team/${top.code.toLowerCase()}`,
+    });
+  }
+
+  items.push({
+    emoji: "⚔️",
+    text: "Run any matchup through the Elo predictor",
+    href: "/predict",
+  });
+
+  return items;
+}
+
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const t = await getTournament();
+  const liveItems = buildLiveItems(t);
+
   return (
     <html lang="en">
       <head>
@@ -40,7 +129,7 @@ export default function RootLayout({
       </head>
       <body>
         <div className="min-h-screen flex flex-col">
-          <NewsBanner />
+          <NewsBanner items={liveItems} />
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
@@ -61,6 +150,12 @@ function Header() {
           </span>
         </Link>
         <nav className="flex items-center gap-1 text-[13px] font-medium">
+          <Link
+            href="/today"
+            className="px-3 py-1.5 rounded-md text-zinc-300 hover:text-white hover:bg-white/5 transition"
+          >
+            Today
+          </Link>
           <Link
             href="/rankings"
             className="px-3 py-1.5 rounded-md text-zinc-300 hover:text-white hover:bg-white/5 transition"

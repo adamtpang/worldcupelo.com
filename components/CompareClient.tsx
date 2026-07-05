@@ -1,19 +1,31 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { Team } from "@/lib/teams";
 import { winProbability } from "@/lib/teams";
+
+const HOME_ADV = 60;
 
 export default function CompareClient({ teams }: { teams: Team[] }) {
   const [codeA, setCodeA] = useState(teams[0].code);
   const [codeB, setCodeB] = useState(teams[1].code);
   const [neutral, setNeutral] = useState(true);
 
+  // Honor deep links like /predict?a=ESP&b=ARG (used by match pages).
+  useEffect(() => {
+    const sp = new URLSearchParams(window.location.search);
+    const a = sp.get("a")?.toUpperCase();
+    const b = sp.get("b")?.toUpperCase();
+    if (a && teams.some((t) => t.code === a)) setCodeA(a);
+    if (b && teams.some((t) => t.code === b)) setCodeB(b);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const teamA = teams.find((t) => t.code === codeA)!;
   const teamB = teams.find((t) => t.code === codeB)!;
 
   const probs = useMemo(() => {
-    const homeAdv = neutral ? 0 : 100;
+    const homeAdv = neutral ? 0 : HOME_ADV;
     const pWin = winProbability(teamA.rating, teamB.rating, homeAdv);
     const pLose = 1 - pWin;
     const drawFactor = Math.exp(
@@ -48,7 +60,7 @@ export default function CompareClient({ teams }: { teams: Team[] }) {
             !neutral ? "bg-amber-500 text-black" : "bg-white/5 text-zinc-400"
           }`}
         >
-          {teamA.name} at home (+100 Elo)
+          {teamA.name} at home (+{HOME_ADV} Elo)
         </button>
       </div>
 

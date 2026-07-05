@@ -3,10 +3,10 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-type NewsItem = { emoji: string; text: string; href: string };
+export type NewsItem = { emoji: string; text: string; href: string };
 
-// Seed news. These are real and current as of June 2026. Phase 2 (live data
-// pipeline) will make these auto-update after each international window.
+// Static fallback headlines, used only when no live items are passed in.
+// The layout builds live items server-side from the tournament feed.
 const NEWS: NewsItem[] = [
   {
     emoji: "⚽",
@@ -40,42 +40,30 @@ const NEWS: NewsItem[] = [
   },
 ];
 
-export default function NewsBanner() {
+// Per-day dismissal: the ticker carries fresh headlines every day, so a
+// dismiss only silences it until tomorrow.
+function dismissKey(): string {
+  return "wce_news_dismissed_" + new Date().toISOString().slice(0, 10);
+}
+
+export default function NewsBanner({ items }: { items?: NewsItem[] }) {
   const [dismissed, setDismissed] = useState(false);
-  const [days, setDays] = useState<number | null>(null);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      if (window.localStorage.getItem("wce_news_dismissed") === "1") {
-        setDismissed(true);
-      }
-      const d = Math.max(
-        0,
-        Math.ceil(
-          (new Date("2026-06-11T00:00:00Z").getTime() - Date.now()) /
-            86400000
-        )
-      );
-      setDays(d);
+    if (
+      typeof window !== "undefined" &&
+      window.localStorage.getItem(dismissKey()) === "1"
+    ) {
+      setDismissed(true);
     }
   }, []);
 
   if (dismissed) return null;
 
-  const items: NewsItem[] =
-    days !== null && days > 0
-      ? [
-          {
-            emoji: "⏱️",
-            text: `${days} ${days === 1 ? "day" : "days"} to kickoff`,
-            href: "/world-cup-2026",
-          },
-          ...NEWS,
-        ]
-      : NEWS;
+  const feed = items && items.length ? items : NEWS;
 
   // Duplicate the list so the marquee loops seamlessly at translateX(-50%).
-  const loop = [...items, ...items];
+  const loop = [...feed, ...feed];
 
   return (
     <div className="news-marquee relative bg-[var(--wce-bg-true)] border-b border-[var(--border)] overflow-hidden">
@@ -130,7 +118,7 @@ export default function NewsBanner() {
           onClick={() => {
             setDismissed(true);
             if (typeof window !== "undefined") {
-              window.localStorage.setItem("wce_news_dismissed", "1");
+              window.localStorage.setItem(dismissKey(), "1");
             }
           }}
           aria-label="Dismiss news banner"
