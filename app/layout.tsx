@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Analytics } from "@vercel/analytics/react";
 import NewsBanner, { type NewsItem } from "@/components/NewsBanner";
 import Emblem from "@/components/Emblem";
 import {
@@ -134,6 +135,7 @@ export default async function RootLayout({
           <main className="flex-1">{children}</main>
           <Footer />
         </div>
+        <Analytics />
       </body>
     </html>
   );
@@ -226,6 +228,14 @@ function Footer() {
             className="hover:text-zinc-300"
           >
             GitHub
+          </a>
+          <a
+            href="https://adampang.com"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-zinc-300"
+          >
+            built by Adam Pangelinan
           </a>
         </div>
       </div>
