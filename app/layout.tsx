@@ -159,6 +159,12 @@ function Header() {
             Today
           </Link>
           <Link
+            href="/arena"
+            className="px-3 py-1.5 rounded-md text-amber-300 hover:text-amber-200 hover:bg-amber-500/10 transition"
+          >
+            Arena
+          </Link>
+          <Link
             href="/rankings"
             className="px-3 py-1.5 rounded-md text-zinc-300 hover:text-white hover:bg-white/5 transition"
           >

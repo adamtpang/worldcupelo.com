@@ -10,6 +10,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     "",
     "/today",
+    "/arena",
+    "/arena/about",
     "/world-cup-2026",
     "/rankings",
     "/predict",
