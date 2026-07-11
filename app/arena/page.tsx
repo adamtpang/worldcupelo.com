@@ -94,6 +94,12 @@ export default async function HomePage() {
               {t.playedCount}/104
             </span>
           </span>
+          <Link
+            href="/arena/agent"
+            className="inline-flex items-center gap-2 rounded-full border border-amber-500/40 bg-amber-500/10 px-3.5 py-1.5 text-[12px] font-semibold text-amber-300 hover:bg-amber-500/20 transition"
+          >
+            Meet Kelly, the trading agent →
+          </Link>
         </div>
       </section>
 
