@@ -15,6 +15,38 @@ function kickoffEt(iso: string): string {
   );
 }
 
+function kickoffDateEt(iso: string): string {
+  return new Date(iso).toLocaleDateString("en-US", {
+    timeZone: "America/New_York",
+    weekday: "short",
+    month: "short",
+    day: "numeric",
+  });
+}
+
+// The next unplayed fixture, date first: the thing everyone asks.
+function NextGameLine({
+  t,
+}: {
+  t: Awaited<ReturnType<typeof getTournament>>;
+}) {
+  const next = upcoming(t, 1)[0];
+  if (!next) return null;
+  return (
+    <Link
+      href={`/match/${next.slug}`}
+      className="mt-3 inline-flex flex-wrap items-center gap-2 rounded-lg border border-amber-500/40 bg-amber-500/10 px-3 py-2 text-[13px] font-semibold text-amber-300 hover:bg-amber-500/20 transition"
+    >
+      <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+      Next match · {next.team1Name} vs {next.team2Name}
+      <span className="text-mono tabular">
+        {kickoffDateEt(next.dateUtc)} · {kickoffEt(next.dateUtc)}
+      </span>
+      <span aria-hidden>→</span>
+    </Link>
+  );
+}
+
 function fmtDelta(d: number): string {
   return d >= 0 ? `+${d.toFixed(1)}` : `−${Math.abs(d).toFixed(1)}`;
 }
@@ -159,6 +191,7 @@ export default async function HomePage() {
               A continuous rating of every men's national team, built from match
               results, opponent strength, and home advantage.
             </p>
+            <NextGameLine t={t} />
           </div>
           <div className="flex flex-wrap gap-2 shrink-0">
             <Link
