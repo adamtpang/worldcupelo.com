@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/today",
     "/arena",
     "/arena/about",
+    "/bracket",
     "/world-cup-2026",
     "/rankings",
     "/predict",

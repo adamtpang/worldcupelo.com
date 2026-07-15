@@ -6,11 +6,11 @@ import NewsBanner, { type NewsItem } from "@/components/NewsBanner";
 import Emblem from "@/components/Emblem";
 import {
   getTournament,
-  recentResults,
   upcoming,
   biggestMovers,
   type Tournament,
 } from "@/lib/tournament";
+import { getWinnerMarket } from "@/lib/polymarket";
 import { TEAMS } from "@/lib/teams";
 
 export const metadata: Metadata = {
@@ -37,7 +37,7 @@ function fmtDelta(d: number, digits = 1): string {
 }
 
 // Build the live ticker headlines from the tournament state, server-side.
-function buildLiveItems(t: Tournament): NewsItem[] {
+async function buildLiveItems(t: Tournament): Promise<NewsItem[]> {
   const items: NewsItem[] = [];
 
   items.push({
@@ -46,21 +46,38 @@ function buildLiveItems(t: Tournament): NewsItem[] {
     href: "/today",
   });
 
-  for (const f of recentResults(t, 2)) {
-    if (!f.score) continue;
-    const [g1, g2] = f.score;
-    let swing = "";
-    if (f.elo1Delta !== null && f.elo2Delta !== null) {
-      const up =
-        f.elo1Delta >= f.elo2Delta
-          ? { name: f.team1Name, d: f.elo1Delta }
-          : { name: f.team2Name, d: f.elo2Delta };
-      swing = ` · ${up.name} ${fmtDelta(up.d)} Elo`;
-    }
+  const final = t.fixtures.find((f) => f.stage === "final");
+  if (final && !final.played && final.team1Name && final.team2Name) {
     items.push({
-      emoji: "⚽",
-      text: `FT: ${f.team1Name} ${g1}-${g2} ${f.team2Name}${swing}`,
+      emoji: "🏆",
+      text: `${final.team1Name} vs ${final.team2Name}: the final, July 19`,
+      href: "/bracket",
+    });
+  }
+
+  for (const f of t.fixtures) {
+    if (f.stage !== "sf" || !f.played || !f.score) continue;
+    const [s1, s2] = f.score;
+    if (s1 === s2) continue;
+    const winner = s1 > s2 ? f.team1Name : f.team2Name;
+    const loser = s1 > s2 ? f.team2Name : f.team1Name;
+    items.push({
+      emoji: "🔥",
+      text: `${winner} are through to the final: ${s1}-${s2} vs ${loser}`,
       href: `/match/${f.slug}`,
+    });
+  }
+
+  const market = await getWinnerMarket();
+  if (market && market.length > 0) {
+    const top3 = market
+      .slice(0, 3)
+      .map((m) => `${m.team} ${Math.round(m.prob * 100)}%`)
+      .join(" · ");
+    items.push({
+      emoji: "📊",
+      text: `Polymarket: ${top3}`,
+      href: "/bracket",
     });
   }
 
@@ -116,7 +133,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const t = await getTournament();
-  const liveItems = buildLiveItems(t);
+  const liveItems = await buildLiveItems(t);
 
   return (
     <html lang="en">
@@ -163,6 +180,12 @@ function Header() {
             className="px-3 py-1.5 rounded-md text-amber-300 hover:text-amber-200 hover:bg-amber-500/10 transition"
           >
             Arena
+          </Link>
+          <Link
+            href="/bracket"
+            className="px-3 py-1.5 rounded-md text-zinc-300 hover:text-white hover:bg-white/5 transition"
+          >
+            Bracket
           </Link>
           <Link
             href="/rankings"
